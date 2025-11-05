@@ -1,17 +1,15 @@
 ---
-title: "AI Data Enrichment Architecture"
-description: "How to implement enterprise-scale enrichment agents for CRM, lead, and business records: ingestion, connectors, embeddings, and caching."
+title: "Data Enrichment Agent"
+description: "Enterprise data enrichment for CRM and lead records: ingestion, normalization, connectors, deduplication, embeddings, caching, and delivery. Production-ready patterns with Bright Data."
 ---
 
-# Data Enrichment Agent Architecture
+<Info>
+Business use case: Automated CRM data completion and lead enrichment for sales teams
+</Info>
 
-The **Enrichment Layer** automates ingestion, cleaning, and augmentation of company/contact records at scale. Built for streaming/real-time and batch workflows. Key features:
+The **Enrichment Layer** automates ingestion, normalization, validation, and augmentation of company and contact records at scale. Designed for real-time and batch workflows.
 
-- **Data Ingestion:** Supports CSV, API, cloud storage, and real-time event streams.
-- **Pipeline Orchestration:** Processes up to 100K+ records per job—handles throttling, failures, retries.
-- **Connectors:** Enterprise-grade connectors extract and normalize data from LinkedIn, Crunchbase, websites, news, and public datasets.
-
-## Architecture and Flow
+## Enrichment Architecture and Data Flow
 
 ```text
 [Raw Data (API/CSV)]
@@ -29,23 +27,47 @@ The **Enrichment Layer** automates ingestion, cleaning, and augmentation of comp
  [Output: CRM, Dashboard, API]
 ```
 
-### Key Design Logic
+<Info>
+Example implementations: Clay.com enrichment workflows, Apollo.io contact discovery, and ZoomInfo-style lead completion platforms
+</Info>
 
-- **Pipeline:** Stateless Lambda or container workers orchestrated via robust central queue (e.g., SQS, PubSub, Kafka).
-- **Parallelism:** Async and batch mode to guarantee scale; dynamic rate limiting by source.
-- **Success Proof:** 95–99% extraction rates validated vs. ground truth on protected sources (LinkedIn, fintech news, etc.).
-- **Caching:** vector embedding cache for repeated queries dramatically lowers cost on common entities.
+## Best Practices for Production-Grade Enrichment
 
-### Implementation Best Practices
+- **Bright Data Web Unlocker**: Use for high-scale, non-interactive scraping. Pay only for successful requests. Automatically manages proxies, headers, fingerprinting, and CAPTCHAs.
+- **Async mode for scale**: For large batches or high concurrency, enable async requests to maximize throughput and reliability. Recommended for 1K+ parallel jobs to avoid 429 errors.
+- **Bright Data Browser API**: When interacting with dynamic sites (fill forms, click, scroll), use full browser automation at scale. Integrates with Puppeteer, Playwright, and Selenium.
+- **Troubleshooting strategy**: If direct API endpoint scraping fails, target the main webpage. For complex cases, use the Browser API to observe and replay frontend API calls.
 
-- Clean/standardize inputs—validated domains, deduped names/UIDs.
-- Use waterfalling and fallback: attempt feeds, then dynamic extraction only if truly required.
-- Monitor source success rates and triggers for pipeline tuning.
 
-## Reference Code
+## Explore Reference Architectures
 
-```python
-from brightdata import EnrichmentAgent
-job = EnrichmentAgent(api_key="YOUR_KEY")
-result = job.run(input="leads.csv", mode="async", outputs=["enriched.csv", "CRM"])
-```
+<CardGroup cols={2}>
+
+  <Card title="STANDARD SCRAPING STACK" icon="sparkles" href="/enrichment/">
+      ~50% success on LinkedIn profiles due to anti-bot measures
+      
+      Slow SERP responses (2–5 seconds) limit throughput
+      
+      Rate limits and IP bans break batch processing at scale
+      
+      Manual proxy management raises operational risk
+      
+      Lacks enterprise compliance and auditability
+      
+      Unreliable above 1K concurrent jobs
+  </Card>
+  
+  <Card title="BRIGHT DATA STACK" icon="database" href="/enrichment/">
+    95%+ enrichment success, including protected sites
+    
+    50K+ concurrent extractions with 99.99% uptime
+    
+    Automated proxy rotation, unblocking, and CAPTCHA solving
+    
+    GDPR/CCPA-ready with enterprise-grade security controls
+    
+    Global network of 150M+ IPs for broad market coverage
+    
+    Trusted by Fortune 500s for mission-critical enrichment
+  </Card>
+</CardGroup>
