@@ -1,0 +1,58 @@
+---
+title: "AI Evaluation & Grounding Agent"
+description: "Fact-check and validate LLM/AI outputs with automated, multi-source evidence—at massive scale."
+---
+
+## What is it?
+
+- Instantly fact-checks and validates LLM/model outputs for correctness and reliability
+- Automates evidence collection from current and historical authoritative sources
+- Scales to 100K+ fact-checks per day with full auditability
+
+## How it works
+
+1. Receives text claims/statements (from LLM/app)
+2. Orchestrator splits each claim into atomic facts
+3. Finds primary sources: news, SEC filings, reports (SERP, Archive, APIs)
+4. Unlocks & validates each fact across multiple sources (current & history)
+5. Assigns confidence and generates references + verdicts
+
+## Diagram
+
+```text
+ [LLM Output/Claim]
+     |
+ [Orchestrator: break into facts]
+     |
+ [Source Finder (SERP, Archive)]
+     |
+ [Extractor/Validator]
+     |
+ [Cross-check, assign confidence]
+     |
+ [Fact-checked Result/Report]
+```
+
+## Why it matters
+
+- Proves your answers are grounded in reality, not AI hallucination
+- Compliant and audit-ready for enterprise: every fact traced to authoritative source
+- Automatic: no manual review or scripting needed—fully API-driven
+
+## Best practices
+
+- Always validate critical facts with >2 sources (current + archive)
+- Set thresholds: Flag for manual review if confidence less than 90%
+- Use audit trail for compliance and transparency
+
+## Why this over manual/DIY?
+
+- Validates 100K+ outputs at once, no bottlenecks
+- Both real-time and historical proof: not just surface “checks”
+- 99.99% uptime, legal evidence record, always up-to-date
+
+## Get started
+
+- [→ How-to and whitepaper](https://brightdata.com/contact)
+
+**Questions?** [Contact Bright Data Solutions](https://brightdata.com/contact)

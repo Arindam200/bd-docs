@@ -23,7 +23,8 @@
             "pages": [
               "enrichment",
               "research",
-              "answer-engine"
+              "answer-engine",
+              "evaluation"
             ]
           }
         ]
