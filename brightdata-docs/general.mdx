@@ -1,0 +1,63 @@
+---
+title: "General AI Agent Architecture"
+description: "Architecture and best practices for robust, real-time AI assistants and workflow agents."
+---
+
+# General AI Agent Architecture
+
+Modern enterprise needs real-time, always-on AI agents—chatbots, assistants, and status checkers—ready to deliver answers and act any time, at scale.
+
+## What is it?
+
+- Handles real-time queries (e.g., flight status, price checks, logistics)
+- Orchestrates workflow from user API/chat to intelligent parsing, dynamic source selection, and safe, monitored extraction
+- Designed for highest reliability, 99.99% uptime, and zero downtime
+
+## How it works
+
+1. **Input Layer:** Accept user/system queries (REST, chat, or API)
+2. **AI Orchestration:** LLM or rules-driven agent analyzes intent, plans workflow, selects APIs/websites dynamically
+3. **Source/Workflow Runner:** Pulls data from target sources (primary/secondary/tertiary)
+4. **Extraction:** Web Unlocker handles blocks/proxying automatically; browser control used if interactivity or robustness needed
+5. **AI Analysis/Response Builder:** Aggregates, interprets, and formats structured responses (e.g. "AA1234 On time, Gate 12")
+6. **Delivery:** Returns structured answer (API/UI/chatbot)
+
+## Architecture Diagram
+
+```text
+[User/API request]
+    ↓
+[Orchestrator/LLM parses, selects workflow]
+    ↓
+[Source runner: Airline|Tracker|Airport]
+    ↓
+[Extractor/Unlocker & Aggregator]
+    ↓
+[AI synthesizes answer]
+    ↓
+[Result/API/UI]
+```
+
+## Best Practices
+
+- Use **Browser API** for dynamic, interactive web flows
+- Use **Web Unlocker** for best results in bulk or non-interactive pulls
+- Enable **async mode** for high concurrency (scale beyond 1K jobs)
+- Proactively switch between endpoints/browsing when encountering failures/blocks
+- Monitor and alert on source reliability and latency
+
+## Proof Points
+
+- **99.99% uptime** validated in production airline/travel platforms
+- **1,000+ concurrent jobs** with sub-second response
+- **99.3% CAPTCHA solve and unblock rates** (Bright Data infrastructure)
+- **Enterprise compliance**: GDPR/CCPA/SOC 2 out of the box
+
+## Example Use Case: Live Flight Status
+
+A major travel platform uses the General AI Agent pattern to:
+
+- Parse user or system query for AA1234
+- Dynamically select official airline site, real-time flight tracker, or airport for redundancy
+- Unlock/resiliently access protected sources (even through CAPTCHAs, rate limits)
+- Aggregate and return trustable, verifiable, real-time response

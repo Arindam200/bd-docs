@@ -1,67 +1,73 @@
 ---
-title: "Reference Architecture for Production-Grade AI Agents"
-description: "Simple, effective architecture for enrichment, research, and answer engines at scale."
+title: "Reference architecture"
+description: "Blueprint for scalable, reliable, and compliant AI agents for enrichment, research, and answer generation."
 ---
 
-# Reference Architecture for Production-Grade AI Agents
+# Reference architecture for production-grade, enterprise-ready AI agents
 
-Welcome—this is the fastest way to deploy AI agents that work reliably at enterprise scale, based on real systems running at 100K+ concurrency. Minimal setup. No jargon.
+Welcome to the industry’s most trusted reference architecture for building production-grade, enterprise-ready AI agents. This guide provides:
 
-## What is This?
+- **Clear blueprints for Enrichment, Research, and Answer Engine layers**
+- **Battle-tested reliability:** 99.99% uptime, full failover, monitoring
+- **Performance at scale:** 100K+ concurrency, global reach
+- **Enterprise compliance:** GDPR/CCPA, SOC2 ready, 24/7 support
 
-- Blueprint for production-grade, enterprise-ready AI agents
-- Built and refined for teams that want reliability, scale, and answers—no devops drama
+<Info>
+  Designed for CTOs, lead engineers, ML architects, and AI builders demanding
+  proof—not marketing.
+</Info>
+---
 
-## Why Care?
+## Architecture Layers
 
-- Proven success at global companies (99.99% uptime, 95-99% real-world success, 100K+ jobs)
-- Handles LinkedIn, Amazon, Google, news, and more without breaking
-- GDPR/CCPA compliant and secure (so you stay out of trouble)
-
-## Quick Navigation
-
-- [Enrichment](enrichment): Fill in gaps in your CRM or contact/company datasets
-- [Research](research): Rapid, multi-source market and competitor insights
-- [Answer Engine](answer-engine): Automated, referenced answers for users or agents
-
-## Patterns at a Glance
-
-- **Enrichment agents**: Complete company/contact profiles. Scales to >100,000 records. CRM ready.
-- **Research agents**: Multi-source real-time research, market/competitor tracking, single touchpoint.
-- **Answer engines**: Receives any question, retrieves, synthesizes, and cites sources at high concurrency.
-
-## How It Works (15s Explanation)
-
-1. **Pick your use case**
-2. **Use the right agent pattern** (see below)
-3. **Run with starter code and diagrams provided**—scale to thousands out-of-the-box
+- **General AI Agent:** Real-time assistants and flight status examples, with 99.99% uptime and global reach.
+- **Data Enrichment:** CRM enrichment and batch processing, with 95%+ success rates and built-in compliance.
+- **Deep Research:** Multi-source competitive intelligence, leveraging 150M+ IPs and automated unblocking.
+- **Answer-engine:** High-concurrency, production-grade answer generation for LLMs and enterprise search.
+- **AI Evaluation & Grounding:** Fact-checking and validation stacks, with automated evidence collection and cross-referencing.
 
 ---
 
-## Architecture Strengths
+## Why Bright Data?
 
-- Scales to 100K+ concurrent tasks easily
-- Handles hardest targets (LinkedIn, ecomm, news, etc.)
-- Auto-unblocks, retries, and verifies—all invisible to you
-- Always compliant and up-to-date—zero legal risk
-
----
-
-## Code: Production-Ready Out-of-the-Box
-
-```python
-from brightdata import Agent
-agent = Agent(api_key="YOUR_KEY")
-result = agent.run(pattern="enrichment", data=your_batch)
-print(result[0])
-```
+- Handles 100K+ concurrent operations with 99.99% uptime
+- Industry-leading success rates on the toughest sites (LinkedIn, eCommerce, news, etc.)
+- GDPR/CCPA compliant, with enterprise-grade security and support
+- Global proxy network (150M+ IPs) for unbeatable reach and reliability
+- Automated unblocking, CAPTCHA solving, and dynamic site handling
 
 ---
 
-## Get Started Fast
+## Bottlenecks at Scale:
 
-- [→ See a full enrichment pipeline](enrichment)
-- [→ See deep multi-source research](research)
-- [→ Try a real-time answer engine](answer-engine)
+- **Concurrency:** Most stacks fail above 1K parallel jobs—Bright Data supports 100K+.
+- **Success Rate:** Standard scrapers hit 50-60% on protected sites—Bright Data delivers 95-99%.
+- **Compliance:** Manual proxy management and legal risk—Bright Data is compliant by design.
 
-**Want a walkthrough or help?** [Contact Bright Data Solutions](https://brightdata.com/contact)
+---
+
+## Explore Reference Architectures
+
+<CardGroup cols={2}>
+  <Card title="General AI Agent" icon="sparkles" href="/general">
+    Real-time assistants for travel, logistics, and service bots.
+  </Card>
+  <Card title="Enrichment" icon="database" href="/enrichment">
+    CRM and batch record enrichment with 95%+ completion rates.
+  </Card>
+  <Card title="Deep Research" icon="search" href="/research">
+    Competitive intelligence, fact-finding, and market monitoring.
+  </Card>
+  <Card
+    title="Answer Engine"
+    icon="chat-bubble-left-right"
+    href="/answer-engine"
+  >
+    Instant, referenced answer generation for LLMs and search.
+  </Card>
+  <Card title="Evaluation & Grounding" icon="shield-check" href="/evaluation">
+    Automated fact-checking and output validation for compliance.
+  </Card>
+</CardGroup>
+
+---

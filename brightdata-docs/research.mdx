@@ -1,50 +1,52 @@
 ---
-title: "Deep Research Agent"
-description: "The easiest way to automate multi-source research and get up-to-date answers from the web."
+title: "AI Research Agent Architecture"
+description: "How to design robust, multi-source research agents for competitive intelligence, hybrid retrieval, and low-latency synthesis."
 ---
 
-# Deep Research Agent
+# Deep Research Agent Architecture
 
-## What is it?
-- Get multi-source, verified insights on any topic (market, competitor, news...)
-- Combines latest news, company info, reports—all in one agent
-- Works at real scale (hundreds of sources, parallel, auto-fact-checking)
-- Battle-tested on the most “protected” sources
+The **Research Layer** executes complex, multi-source retrieval, ranking, and evidence synthesis at enterprise scale. Essential for due diligence, market monitoring, and real-time intelligence.
 
-## How it works
-1. You send a query (e.g. “AI startup funding trends Q4 2024”)
-2. Orchestrator breaks down research into tasks
-3. Discovers best current & historic sources (web, SERPs, archives)
-4. Unlocks, extracts, and checks facts across sources
-5. Summarizes findings and delivers a synthesized, cited report
+## Data Flow
 
-## Simple Flow
 ```text
- [Query]
-   |
-[Orchestrator/Planner]
-   |
-[Find Sources (SERP, Archive)]
-   |
-[Extract/Unlock/Verify Data]
-   |
-[Synthesize & Summarize]
-   |
-[Final Report/Export]
+   [Task/Query/Event]
+         ↓
+    [Workflow Orchestrator]
+         ↓
+ [Discovery & Hybrid Retrieval]
+   ↙                ↘
+[SERP][Feeds][Archive]    [APIs]
+   ↘       ↙      ↘
+  [Relevance/Ranking/Semantic Filter]
+         ↓
+     [Extraction/Parsing]
+         ↓
+    [Synthesis Engine (LLM/Rules)]
+         ↓
+      [Fact-check/Validate]
+         ↓
+      [Results/API]
 ```
 
-## Best Practices
-- Always use async for long-running or source-heavy research
-- Use both current (SERP) and historic (Archive) data for best coverage
-- Fact-check with >3 sources for critical answers
+### Hybrid Retrieval & Synthesis
 
-## Why use this?
-- 10-100x faster than any manual analyst or classic scraping script
-- Verifies facts and cross-references—real trust, no hallucinations
-- Handles login/forms, paywalled/protected sources
-- Instantly scales to 100+ concurrent research jobs
+- **Multi-engine discovery:** Google/Bing, vertical APIs, internal documents, historic web archives.
+- **Ranking:** ML-driven evidence scoring; keyword+embedding hybrid ranking.
+- **Latency:** Targets p95 <3s for queries (<500ms source lookup with aggressive concurrency).
+- **Proof:** Benchmark: 98% source coverage of target Fortune 1000 domains.
 
-## Get started
-- [→ How-to and sample queries](https://brightdata.com/contact)
+### Best Practices
 
-**Questions?** [Contact Bright Data Solutions](https://brightdata.com/contact)
+- Use hybrid SERP + vector search for maximum coverage.
+- Always cache high-value retrievals with expiry.
+- Chain-of-thought LLM for structured, multi-source analysis.
+
+## Reference Code
+
+```python
+from brightdata import ResearchAgent
+agent = ResearchAgent()
+result = agent.query("AI startup funding 2024")
+print(result["summary"])
+```

@@ -21,6 +21,7 @@
           {
             "group": "Architecture Patterns",
             "pages": [
+              "general",
               "enrichment",
               "research",
               "answer-engine",
