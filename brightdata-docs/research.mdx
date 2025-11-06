@@ -1,72 +1,102 @@
 ---
-title: "Deep Research Agent Architecture"
+title: "AI Research Agent Architecture"
 description: "How to design robust, multi-source research agents for competitive intelligence, hybrid retrieval, and low-latency synthesis."
 ---
 
-<Info>
-Business Use Case: Automated competitive intelligence and multi-source research for strategic decision making
-</Info>
+<Frame>![Diagram](./research-agent-diagram.png)</Frame>
 
-## Deep Research Architecture
+Modern enterprises need research agents that can think, retrieve, and synthesize insights across thousands of sources — from the live web to historical archives — with speed, accuracy, and compliance.
 
-```text
-[Raw Data (API/CSV)]
-        ↓
-  [Normalization & Validation]
-        ↓
-   [Parallel Enrichment Controller]
-       ↙        ↓        ↘
- [LinkedIn] [Crunchbase] [Website/API]
-      ↘         ↓         ↙
-   [Aggregation & Deduplication]
-        ↓
-  [Embeddings/Vector Cache]
-        ↓
- [Output: CRM, Dashboard, API]
-```
+## Overview
 
-<Info>
-Example Implementation: Hebbia research platform, Perplexity Pro business research, AlphaSense-style market intelligence systems
-</Info>
+The **AI Research Agent Architecture** powers enterprise-grade research assistants that can:
 
-## Best Practices for Production-Grade research
+- Retrieve data across search engines, APIs, and internal repositories
+- Merge historical and live information for deeper insights
+- Operate under high concurrency while maintaining low-latency responses
+- Ensure compliance and auditability across global data operations
 
-- **SERP API**: Use for search engine data (Google, Bing, etc.) with no proxy or CAPTCHA management required. Choose parsed JSON for structured results, or raw HTML/Markdown as needed.
-- **Async Mode**: For high-volume or slow queries, enable async requests for 99.99% success and best throughput. Async is recommended for large research jobs and batch processing.
-- **Pay for Success**: Only successful requests are billed. Parsing, proxy management, and unlocking are included in the price.
-- **Troubleshooting**: For 429 errors, reduce concurrency or switch to async. Use engine-specific parameters for best results. See parsed JSON schema for advanced analytics.
+## How it works
+
+1. **Input Layer**  
+   Accepts research queries via API, chat, or automation triggers.
+
+2. **Retrieval Layer**  
+   Performs hybrid search across Google/Bing, APIs, vector stores, and private datasets.
+
+3. **Ranking & Filtering**  
+   Combines keyword-based and embedding-based ranking for relevance and precision.
+
+4. **Synthesis Layer**  
+   LLM-based reasoning merges evidence from multiple sources into structured, traceable outputs.
+
+5. **Delivery Layer**  
+   Returns synthesized, source-linked responses through APIs, dashboards, or chat interfaces.
 
 
-## The Difference
+## Hybrid Retrieval & Synthesis
+
+- **Multi-engine discovery:** Uses Google, Bing, vertical APIs, internal docs, and archived web data.
+- **Ranking:** Hybrid ranking using ML evidence scoring and embedding-based similarity.
+- **Latency:** Targets less than 3s p95 latency per query with parallelized lookups (less than 500ms source access).
+- **Proof:** Benchmarked 98% domain coverage across Fortune 1000 websites.
+
+## Standard vs Bright Data Research Stack
 
 <CardGroup cols={2}>
 
-  <Card title="BASIC RESEARCH TOOLS" icon="sparkles" href="/research/">
-      Surface-level data collection only, missing deep insights
-      
-      No historical context or web archive access
-      
-      Blocked on complex interactive sites and forms
-      
-      Limited to 1K concurrent source processing jobs
-      
-      Manual workflow orchestration and error handling
-      
-      High failure rates on protected or dynamic sources
+  <Card title="BASIC RESEARCH TOOLS" icon="alert-triangle" href="#">
+    Surface-level data collection only, missing deep insights
+
+    No access to historical or archived web data
+
+    Blocked on complex interactive sites and login flows
+
+    Limited to 1K concurrent source processing jobs
+
+    Manual workflow orchestration and retry handling
+
+    High failure rates on protected or dynamic sources
+
   </Card>
   
-  <Card title="BRIGHT DATA POWERED RESEARCH STACK" icon="database" href="/research/">
-    Deep multi-source analysis with real-time and historical data
-    
-    2PB+ historical archive access for context-rich research
-    
-    Handles complex site interaction via browser automation and unblocking
-    
-    20K+ concurrent extraction operations with 99.99% uptime
-    
-    Automated, resilient multi-step research workflows
-    
-    Global proxy network ensures access to any source, anywhere
-   
+  <Card title="BRIGHT DATA POWERED RESEARCH STACK" icon="rocket" href="#">
+    Deep, multi-source analysis combining real-time and historical data
+
+    2PB+ historical archive for context-rich research
+
+    Browser automation and unblocking for complex, dynamic sites
+
+    20K+ concurrent extractions with 99.99% uptime
+
+    Automated, multi-step research workflows with built-in retry logic
+
+    Global proxy network ensuring access to any source, anywhere
+
+    Enterprise-grade compliance, monitoring, and support
+
   </Card>
+
 </CardGroup>
+
+
+## Best Practices
+
+- Use **hybrid SERP + vector search** for maximum coverage
+- **Cache high-value retrievals** with expiry to reduce load
+- Use **Chain-of-Thought LLMs** for multi-source synthesis
+- For **search engine data**, use **SERP API** for structured or raw results
+- Enable **async mode** for high-volume or slow queries (recommended for 99.99% success)
+- **Pay for Success**: Only successful retrievals are billed; parsing and proxy management included
+- On **429 errors**, reduce concurrency or switch to async mode
+- Use **engine-specific parameters** for advanced analytics or domain-specific retrieval
+
+## Example: Deep Research Agent
+
+Used by business intelligence systems like Hebbia, Perplexity Pro, and AlphaSense-style research tools, this agent pattern enables:
+
+1. Query understanding and topic breakdown via LLM planning
+2. Hybrid search across live web, APIs, and historical archives
+3. Automatic unblocking for protected or rate-limited domains
+4. Multi-source synthesis with citation-linked insights
+5. Enterprise-compliant delivery of summarized intelligence
