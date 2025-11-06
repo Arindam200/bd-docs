@@ -3,40 +3,38 @@ title: "General AI Agent Architecture"
 description: "Architecture and best practices for robust, real-time AI assistants and workflow agents."
 ---
 
-# General AI Agent Architecture
+<Frame>![Diagram](./general-agent-diagram.png)</Frame>
 
-Modern enterprise needs real-time, always-on AI agents—chatbots, assistants, and status checkers—ready to deliver answers and act any time, at scale.
+Modern platforms need AI agents that can think, act, and respond in real time, flight trackers, support assistants, or system monitors that stay online 24/7 and scale without downtime.
 
-## What is it?
+## Overview
 
-- Handles real-time queries (e.g., flight status, price checks, logistics)
-- Orchestrates workflow from user API/chat to intelligent parsing, dynamic source selection, and safe, monitored extraction
-- Designed for highest reliability, 99.99% uptime, and zero downtime
+The **General AI Agent Architecture** powers real-time assistants and workflow agents that can:
+
+- Answer live data queries (flight status, price checks, logistics updates)
+- Orchestrate multiple APIs, sites, and workflows safely
+- Operate under high concurrency with enterprise-level uptime (99.99%)
 
 ## How it works
 
-1. **Input Layer:** Accept user/system queries (REST, chat, or API)
-2. **AI Orchestration:** LLM or rules-driven agent analyzes intent, plans workflow, selects APIs/websites dynamically
-3. **Source/Workflow Runner:** Pulls data from target sources (primary/secondary/tertiary)
-4. **Extraction:** Web Unlocker handles blocks/proxying automatically; browser control used if interactivity or robustness needed
-5. **AI Analysis/Response Builder:** Aggregates, interprets, and formats structured responses (e.g. "AA1234 On time, Gate 12")
-6. **Delivery:** Returns structured answer (API/UI/chatbot)
+1. **Input Layer**  
+   Accepts user or system queries via REST API, chat interface, or automation triggers.
 
-## Architecture Diagram
+2. **AI Orchestration**  
+   LLM or rules-driven planner interprets intent, builds an execution plan, and dynamically selects sources.
 
-```text
-[User/API request]
-    ↓
-[Orchestrator/LLM parses, selects workflow]
-    ↓
-[Source runner: Airline|Tracker|Airport]
-    ↓
-[Extractor/Unlocker & Aggregator]
-    ↓
-[AI synthesizes answer]
-    ↓
-[Result/API/UI]
-```
+3. **Source & Workflow Runner**  
+   Executes calls to primary, secondary, or tertiary data sources for redundancy.
+
+4. **Extraction Layer**  
+   - Uses **Web Unlocker** for resilient data access (handles blocks, CAPTCHAs, rate limits automatically).  
+   - Switches to **Browser API** when real-time interaction or JavaScript rendering is required.
+
+5. **AI Analysis & Response Builder**  
+   Synthesizes data, interprets it, and structures clean responses (e.g., “AA1234 On time, Gate 12”).
+
+6. **Delivery Layer**  
+   Returns the final, structured output to the requesting app, chat, or API.
 
 ## Best Practices
 
@@ -46,18 +44,44 @@ Modern enterprise needs real-time, always-on AI agents—chatbots, assistants, a
 - Proactively switch between endpoints/browsing when encountering failures/blocks
 - Monitor and alert on source reliability and latency
 
-## Proof Points
+## Standard vs Bright Data Infrastructure
 
-- **99.99% uptime** validated in production airline/travel platforms
-- **1,000+ concurrent jobs** with sub-second response
-- **99.3% CAPTCHA solve and unblock rates** (Bright Data infrastructure)
-- **Enterprise compliance**: GDPR/CCPA/SOC 2 out of the box
+<CardGroup cols={2}>
 
-## Example Use Case: Live Flight Status
+  <Card title="STANDARD INFRASTRUCTURE" icon="alert-triangle" href="#">
+    60% failure rate on airline websites due to anti-bot and rate limits  
 
-A major travel platform uses the General AI Agent pattern to:
+    CAPTCHA challenges stop agents completely  
 
-- Parse user or system query for AA1234
-- Dynamically select official airline site, real-time flight tracker, or airport for redundancy
-- Unlock/resiliently access protected sources (even through CAPTCHAs, rate limits)
-- Aggregate and return trustable, verifiable, real-time response
+    Rate limiting blocks real-time scaling  
+
+    Frequent timeouts during peak travel or high concurrency  
+
+    No SLA or compliance for business-critical apps
+  </Card>
+  
+  <Card title="BRIGHT DATA INFRASTRUCTURE" icon="rocket" href="#">
+    99.3%+ success rate with automated CAPTCHA solving and unblocking  
+
+    Real-time flight data access at global scale  
+
+    1,000+ concurrent flight queries with 99.99% uptime  
+
+    Sub-second response times, even under peak load  
+
+    Enterprise-grade SLA, compliance, and support  
+
+    Global proxy network with automated management
+  </Card>
+</CardGroup>
+
+
+## Example: Real-Time Flight Status Agent
+
+A global travel platform uses this architecture to process flight queries like “AA1234”:
+
+1. The agent detects the flight intent and identifies data sources (airline site, flight tracker, airport API).  
+2. It queries multiple live endpoints in parallel to ensure redundancy.  
+3. The **Web Unlocker** automatically solves CAPTCHAs and handles rate limits.  
+4. The **AI Analysis Layer** aggregates the verified data.  
+5. A clean, structured response is returned instantly to chat or app interfaces.

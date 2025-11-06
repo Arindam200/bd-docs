@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "AI Agents Reference Architecture",
   "colors": {
-    "primary": "#ffb300",
-    "light": "#ffd700",
-    "dark": "#ff8c00"
+    "primary": "#3D7FFC",
+    "light": "#3D7FFC",
+    "dark": "#3D7FFC"
   },
   "navigation": {
     "tabs": [

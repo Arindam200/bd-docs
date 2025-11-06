@@ -11,22 +11,6 @@ The **Enrichment Layer** automates ingestion, normalization, validation, and aug
 
 ## Enrichment Architecture and Data Flow
 
-```text
-[Raw Data (API/CSV)]
-        ↓
-  [Normalization & Validation]
-        ↓
-   [Parallel Enrichment Controller]
-       ↙        ↓        ↘
- [LinkedIn] [Crunchbase] [Website/API]
-      ↘         ↓         ↙
-   [Aggregation & Deduplication]
-        ↓
-  [Embeddings/Vector Cache]
-        ↓
- [Output: CRM, Dashboard, API]
-```
-
 <Info>
 Example implementations: Clay.com enrichment workflows, Apollo.io contact discovery, and ZoomInfo-style lead completion platforms
 </Info>
